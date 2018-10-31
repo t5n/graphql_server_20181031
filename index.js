@@ -47,6 +47,10 @@ const resolvers = {
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.
 const server = new ApolloServer({ typeDefs, resolvers, introspection: true});
+// TJ: Adding "introspection: true" enables the GraphQL Playground (GraphiQL) in when node_env environment variable = "production"
+// Source:
+// https://www.apollographql.com/docs/apollo-server/v2/features/graphql-playground.html#Enabling-GraphQL-Playground-in-production
+// https://stackoverflow.com/questions/52452497/graphql-playground-behaving-weirdly-running-on-heroku
 
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
