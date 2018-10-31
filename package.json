@@ -1,16 +1,24 @@
 {
-  "name": "graphql-server-example",
+  "name": "graphql_server_20181031",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hackathon - Github - Heroku Tutorial",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.1.0",
     "graphql": "^14.0.2"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t5n/graphql_server_20181031.git"
+  },
+  "author": "Tony Jin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/t5n/graphql_server_20181031/issues"
+  },
+  "homepage": "https://github.com/t5n/graphql_server_20181031#readme"
 }
