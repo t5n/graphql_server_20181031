@@ -4,16 +4,28 @@ const { ApolloServer, gql } = require('apollo-server');
 // This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
 // from an existing data source like a REST API or database.
-const books = [
-  {
-    title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling',
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
-];
+const books =  [
+      {
+        "title": "Harry Potter and the Chamber of Secrets",
+        "author": "J.K. Rowling"
+      },
+      {
+        "title": "Jurassic Park",
+        "author": "Michael Crichton"
+      },
+      {
+        "title": "Dracula",
+        "author": "Bram Stoker"
+      },
+      {
+        "title": "Crime and Punishment",
+        "author": "Fyodor Dostoyevsky"
+      },
+      {
+        "title": "1984",
+        "author": "George Orwell"
+      }
+    ];
 
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
@@ -67,3 +79,21 @@ const server = new ApolloServer({ typeDefs, resolvers, introspection: true});
 server.listen(process.env.PORT || 4000).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`)
  });
+
+// Query examples
+
+// List all books and authors
+// query {
+//   books {
+//     title
+//     author
+//   }
+// }
+
+// Add a book
+// mutation {
+//   addBook {
+//     title: "Dracula",
+//     author: "Bram Stoker"
+//   }
+// }
