@@ -1,3 +1,4 @@
+
 const { ApolloServer, gql } = require('apollo-server');
 
 // This is a (sample) collection of books we'll be able to query
@@ -18,21 +19,19 @@ const books = [
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
   # Comments in GraphQL are defined with the hash (#) symbol.
-
   # This "Book" type can be used in other type declarations.
   type Book {
     title: String
     author: String
   }
-
   # The "Query" type is the root of all GraphQL queries.
   # (A "Mutation" type will be covered later on.)
   type Query {
     books: [Book]
   }
-  
-  # Mutation TJ
-
+  type Mutation {
+    addBook(title: String, author: String): Book
+  }
 `;
 
 // Resolvers define the technique for fetching the types in the
@@ -41,6 +40,13 @@ const resolvers = {
   Query: {
     books: () => books,
   },
+  Mutation: {
+  addBook: (root,args) => {
+        item = { 'title': args.title, 'author': args.author };
+        books.push(item);
+        return item;
+    }
+  }
 };
 
 // In the most basic sense, the ApolloServer can be started
@@ -61,7 +67,3 @@ const server = new ApolloServer({ typeDefs, resolvers, introspection: true});
 server.listen(process.env.PORT || 4000).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`)
  });
-
-
-
-
