@@ -1,5 +1,10 @@
 
 const { ApolloServer, gql } = require('apollo-server');
+const fetch = require('node-fetch');
+
+const sparc_url = 'https://health.data.ny.gov/resource/gnzp-ekau.json';
+
+
 
 // This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
@@ -40,9 +45,46 @@ const typeDefs = gql`
   # (A "Mutation" type will be covered later on.)
   type Query {
     books: [Book]
+    records: [Record]
   }
   type Mutation {
     addBook(title: String, author: String): Book
+  }
+  type Record {
+    abortion_edit_indicator: String
+    age_group: String
+    apr_drg_code: String
+    apr_drg_description: String
+    apr_mdc_code: String
+    apr_mdc_description: String
+    apr_medical_surgical_description: String
+    apr_risk_of_mortality: String
+    apr_severity_of_illness_code: String
+    apr_severity_of_illness_description: String
+    attending_provider_license_number: String
+    birth_weight: String
+    ccs_diagnosis_code: String
+    ccs_diagnosis_description: String
+    ccs_procedure_code: String
+    ccs_procedure_description: String
+    discharge_year: String
+    emergency_department_indicator: String
+    ethnicity: String
+    facility_id: String
+    facility_name: String
+    gender: String
+    health_service_area: String
+    hospital_county: String
+    length_of_stay: String
+    operating_certificate_number: String
+    patient_disposition: String
+    payment_typology_1: String
+    payment_typology_2: String
+    race: String
+    total_charges: String
+    total_costs: String
+    type_of_admission: String
+    zip_code_3_digits: String
   }
 `;
 
@@ -52,6 +94,14 @@ const resolvers = {
   Query: {
     books: () => books,
   },
+
+    Query:{
+      records: () => {
+      return fetch(sparc_url)
+      .then(response => response.json());
+      //.then(json => console.log(json));
+    }},
+
   Mutation: {
   addBook: (root,args) => {
         item = { 'title': args.title, 'author': args.author };
